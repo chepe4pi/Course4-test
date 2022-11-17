@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./course4-app:/course4-app # монтируем локальную директорию
+      # в докер контейнер, чтобы не ребилдить при изменениях
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+
+
