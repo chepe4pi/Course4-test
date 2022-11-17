@@ -5,6 +5,8 @@ COPY course4-app /course4-app
 WORKDIR /course4-app
 EXPOSE 8000
 
+RUN apk add postgresql-client build-base postgresql-dev
+
 RUN pip install -r /temp/requirements.txt
 RUN adduser --disabled-password course4-user
 

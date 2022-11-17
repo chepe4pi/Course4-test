@@ -9,5 +9,22 @@ services:
       # в докер контейнер, чтобы не ребилдить при изменениях
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=database
+      - DB_NAME=dbname
+      - DB_USER=dbuser
+      - DB_PASS=securepass
+    depends_on: # стартует после этого, и закрывается если database упадет
+      - database
 
+  database:
+    image: postgres:14.6-alpine
+    volumes:
+      - db-data-folder:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=dbname
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=securepass
 
+volumes:
+  db-data-folder:
