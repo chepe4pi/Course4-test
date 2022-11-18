@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: 'app-container' # чтобы пересоздание происходило быстрее и не оставляло хвостов
     build:
       context: .
     ports:
