@@ -23,6 +23,7 @@ class Plan(models.Model):
 
 class Subscription(models.Model):
     client = models.ForeignKey(Client, on_delete=models.PROTECT)
+    service = models.ForeignKey(Service, on_delete=models.PROTECT, null=True)
     plan = models.ForeignKey(Plan, on_delete=models.PROTECT)
     start_date = models.DateField()
     end_date = models.DateField()
