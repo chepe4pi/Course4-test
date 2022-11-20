@@ -33,6 +33,7 @@ services:
     hostname: redis
 
   worker:
+    container_name: 'worker-container'
     build:
       context: .
     hostname: worker
@@ -44,6 +45,22 @@ services:
       - redis
     depends_on:
       - redis
+
+  flower:
+    container_name: 'flower-container'
+    build:
+      context: .
+    hostname: flower
+    entrypoint: celery
+    command: -A celery_app.app flower
+    volumes:
+      - ./course4-app:/course4-app
+    links:
+      - redis
+    depends_on:
+      - redis
+    ports:
+      - "5555:5555"
 
 volumes:
   db-data-folder:
