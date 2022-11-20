@@ -45,6 +45,12 @@ services:
       - redis
     depends_on:
       - redis
+      - database
+    environment:
+      - DB_HOST=database
+      - DB_NAME=dbname
+      - DB_USER=dbuser
+      - DB_PASS=securepass
 
   flower:
     container_name: 'flower-container'

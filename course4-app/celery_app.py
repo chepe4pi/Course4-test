@@ -14,5 +14,5 @@ app.autodiscover_tasks()
 
 @app.task(bind=True)
 def debug_task(self):
-    time.sleep(60)
+    time.sleep(10)
     print(f'Request: {self.request!r}')

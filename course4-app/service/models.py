@@ -27,3 +27,4 @@ class Subscription(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.PROTECT)
     start_date = models.DateField()
     end_date = models.DateField()
+    price = models.PositiveSmallIntegerField(null=True, blank=True, default=None)

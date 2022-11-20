@@ -16,5 +16,5 @@ class SubscriptionsView(ReadOnlyModelViewSet):
             'company_name',
             'user__email')),
 
-    ).annotate(a_price=F('plan__discount_percent') * F('service__full_price') / 100.00
-    )
+    )#.annotate(a_price=F('plan__discount_percent') * F('service__full_price') / 100.00
+    #)
