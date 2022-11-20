@@ -8,7 +8,7 @@ services:
     volumes:
       - ./course4-app:/course4-app # монтируем локальную директорию
       # в докер контейнер, чтобы не ребилдить при изменениях
-    command: >
+    command: > # только для разработки - не gunicorn 
       sh -c "python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=database
@@ -26,6 +26,24 @@ services:
       - POSTGRES_DB=dbname
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=securepass
+
+  redis:
+    image: redis:7.0.5-alpine
+    container_name: redis
+    hostname: redis
+
+  worker:
+    build:
+      context: .
+    hostname: worker
+    entrypoint: celery
+    command: -A celery_app.app worker --loglevel=info
+    volumes:
+      - ./course4-app:/course4-app
+    links:
+      - redis
+    depends_on:
+      - redis
 
 volumes:
   db-data-folder:
