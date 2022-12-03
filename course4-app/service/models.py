@@ -54,6 +54,11 @@ class Subscription(models.Model):
     service = models.ForeignKey(Service, on_delete=models.PROTECT, null=True)
     comment = models.CharField(max_length=50, null=True)
     plan = models.ForeignKey(Plan, on_delete=models.PROTECT)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField() # ??
+    end_date = models.DateField() # ??
     price = models.PositiveSmallIntegerField(null=True, blank=True, default=None)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['comment', 'price']),
+        ]
