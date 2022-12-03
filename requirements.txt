@@ -5,3 +5,4 @@ django-countries==7.4.2
 celery[redis]==5.2.7
 flower==1.2.0
 celery_singleton==0.3.1
+django-filter==22.1

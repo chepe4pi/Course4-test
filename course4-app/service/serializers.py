@@ -12,9 +12,7 @@ class PlanSerializer(serializers.ModelSerializer):
 class SubscriptionSerializer(serializers.ModelSerializer):
     client_name = serializers.CharField(source='client.company_name')
     email = serializers.CharField(source='client.user.email')
-    a_price = serializers.CharField()
 
     class Meta:
         model = Subscription
-        fields = ('id', 'start_date', 'end_date', 'client_name', 'email',
-                  'a_price')
+        fields = ('id', 'start_date', 'end_date', 'client_name', 'email', 'price')
