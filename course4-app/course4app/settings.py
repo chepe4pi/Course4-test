@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3 party
+    'cachalot',
+
     'service',
     'clients',
 ]
@@ -152,6 +156,16 @@ LOGGING = {
             'level': 'DEBUG',
         },
     },
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": 'redis://redis:6379/1',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
 }
 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
